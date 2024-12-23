@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import { Modal } from "antd";
+import AddButton from "@/components/addButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +30,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+          <nav>
+            <div className="flex flex-row justify-between p-10">
+              <div>
+                <Link href={'/'}>
+                  <h3 className="font-bold text-xl">School</h3>
+                </Link>
+              </div>
+              <div>
+                <ul className="flex flex-row list-none text-fuchsia-400 ">
+                  <li>
+                    <AddButton />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
         {children}
       </body>
     </html>
