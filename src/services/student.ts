@@ -45,7 +45,21 @@ export async function getStudents(query: string, page: string): Promise<{data: S
         throw error;
     }
 }
-export async function updateStudent(values: any, id: number): Promise<Student>{
+export async function updateStudent(values: {
+    studentName: string,
+    fatherName: string
+    motherName: string,
+    dateOfBirth: string,
+    gender: string | Gender, 
+    aadharNumber: string,
+    penNumber: string,
+    cls: string | number,
+    dateOfAdmission: string,
+    admissionNumber: string,
+    accountNumber: string,
+    IFSC: string,
+    nameOfBank: string
+}, id: number): Promise<Student>{
     try {
         const student = await fetch(`${base_api}/student/update/${id}`, {
             method: 'PUT',
@@ -64,9 +78,31 @@ export async function updateStudent(values: any, id: number): Promise<Student>{
         throw error;
     }
 }
-export async function createStudent(values: any): Promise<Student>{
+export async function createStudent(values: {
+    studentName: string,
+    fatherName: string
+    motherName: string,
+    dateOfBirth: string,
+    gender: string | Gender, 
+    aadharNumber: string,
+    penNumber: string,
+    cls: string | number,
+    dateOfAdmission: string,
+    admissionNumber: string,
+    accountNumber: string,
+    IFSC: string,
+    nameOfBank: string
+}): Promise<Student>{
     try {
-        const student = await fetch(`${base_api}/student/create`, {cache: 'no-store'})
+        const student = await fetch(`${base_api}/student/create`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(values),
+            cache: 'no-cache'
+        })
         if (!student.ok) {
             throw new Error(`Response status: ${student.status}`);
         }

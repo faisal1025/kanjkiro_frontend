@@ -1,7 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
+
 import {Suspense} from "react";
-import {getStudents, search, Student} from '../services/student'
+import {getStudents} from '../services/student'
 import ShowStudentTable from '../components/showStudentTable'
 import Loading from "./loading";
 import SearchComponent from "@/components/searchComponent";

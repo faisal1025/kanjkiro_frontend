@@ -1,13 +1,11 @@
 import React from 'react'
-import {Form, Input, Button} from 'antd'
 import { Student } from '@/services/student'
 import { useFormik } from 'formik';
 import { studentFormValidation } from '@/validation';
 import { updateStudent, createStudent } from '@/services/student';
-import { format } from 'path';
 import { useRouter } from 'next/navigation';
 
-const UpdateForm = ({student, handleCancel, handleOk}: {student?: Student, handleOk: () => void, handleCancel: () => void}) => {
+const UpdateForm = ({student, handleCancel}: {student?: Student, handleCancel: () => void}) => {
     
     const router = useRouter();
 
@@ -30,6 +28,7 @@ const UpdateForm = ({student, handleCancel, handleOk}: {student?: Student, handl
     validationSchema: studentFormValidation,
     onSubmit: async values => {
       const result = student ? await updateStudent(values, student.id) : await createStudent(values);
+      console.log(result);
       handleCancel();
       router.refresh()
     },

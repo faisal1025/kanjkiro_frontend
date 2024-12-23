@@ -3,8 +3,7 @@ import React, {useState} from 'react'
 import {Student, deleteStudent} from '../services/student'
 import moment from 'moment'
 import Image from 'next/image'
-import type { PopconfirmProps } from 'antd';
-import { Divider, message, Popconfirm, Modal, Button } from 'antd'
+import { Modal } from 'antd'
 import UpdateForm from './updateForm'
 import { useRouter } from 'next/navigation'
 
@@ -111,6 +110,7 @@ const ShowStudentTable = ({data}: {data: Student[]}) => {
                                                 <span>Edit</span>
                                             </div>
                                             <Modal
+                                                loading={loading}
                                                 open={open}
                                                 title="Update Student"
                                                 onOk={handleOk}
@@ -119,7 +119,7 @@ const ShowStudentTable = ({data}: {data: Student[]}) => {
                                                
                                                 ]}
                                             >
-                                                <UpdateForm student={student} handleOk={handleOk} handleCancel={handleCancel} />
+                                                <UpdateForm student={student} handleCancel={handleCancel} />
                                             </Modal>
                                           
                                             <div onClick={showDeleteModal} className='cursor-pointer gap-2 flex items-start'>
@@ -133,6 +133,7 @@ const ShowStudentTable = ({data}: {data: Student[]}) => {
                                                 <span>Delete</span>
                                             </div>
                                             <Modal
+                                                loading={loadingDelete}
                                                 open={openDelete}
                                                 title="Delete Student"
                                                 onOk={() => handleDeleteOk(student.id)}

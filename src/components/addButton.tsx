@@ -27,6 +27,7 @@ const AddButton = () => {
         <div>
             <button onClick={showModal} className="p-2 text-white rounded bg-blue-500 hover:bg-blue-400 active:scale-75 transition-all">Add Student</button>
             <Modal
+                loading={loading}
                 open={open}
                 title="Add Student"
                 onOk={handleOk}
@@ -35,7 +36,7 @@ const AddButton = () => {
                 
                 ]}
             >
-                <UpdateForm handleOk={handleOk} handleCancel={handleCancel} />
+                <UpdateForm handleCancel={handleCancel} />
             </Modal>
         </div>
     )

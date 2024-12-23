@@ -9,14 +9,13 @@ const SearchComponent = () => {
     const pathname = usePathname();
     const { replace } = useRouter();
     
-    function handleSearch(e: any,term: string) {
-        console.log("searching...", term);
+    function handleSearch(e: React.FormEvent<HTMLFormElement>, term: string) {
         e.preventDefault();
         const params = new URLSearchParams(searchParams);
         if (term) {
-        params.set('query', term);
+            params.set('query', term);
         } else {
-        params.delete('query');
+            params.delete('query');
         }
         setText('')
         replace(`${pathname}?${params.toString()}`);
